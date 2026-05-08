@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScaleX - Basic Website Page</title>
+
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="./assets/logo.svg" alt="">
+            <span>ScaleX</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <a href="#" class="cta-button">Get Started</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Insights & Blogs</h1>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="tab active">All</button>
+            <button class="tab">Tech</button>
+            <button class="tab">SaaS</button>
+            <button class="tab">Marketing</button>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid">
+        <!-- Blog Card 1 -->
+        <div class="blog-card">
+            <img src="./assets/Glass_with_olives.webp" alt="Martini glass with olives" class="blog-image">
+            <div class="blog-content">
+                <span class="blog-category category-tech">Tech</span>
+                <h2 class="blog-title">The Ultimate Guide To SaaS Marketing</h2>
+                <p class="blog-date">May 23, 2025</p>
+            </div>
+        </div>
+
+        <!-- Blog Card 2 -->
+        <div class="blog-card">
+            <img src="./assets/Chair.webp" alt="Modern black chair" class="blog-image">
+            <div class="blog-content">
+                <span class="blog-category category-saas">SaaS</span>
+                <h2 class="blog-title">5 Key Trends In SaaS Growth For 2025</h2>
+                <p class="blog-date">May 23, 2025</p>
+            </div>
+        </div>
+
+        <!-- Blog Card 3 -->
+        <div class="blog-card">
+            <img src="./assets/cat.png" alt="Orange cat looking up" class="blog-image">
+            <div class="blog-content">
+                <span class="blog-category category-marketing">Marketing</span>
+                <h2 class="blog-title">How Data-Driven Strategies Are Important</h2>
+                <p class="blog-date">May 23, 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter functionality
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function () {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
