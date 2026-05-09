@@ -1,0 +1,249 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  overflow: hidden;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* --- Navbar --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  z-index: 100;
+  padding: 0 50px;
+}
+
+.nav-left,
+.nav-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-right: 40px;
+}
+
+.search-wrapper {
+  background: #f1f3f2;
+  border-radius: 20px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  width: 250px;
+}
+
+.search-wrapper i {
+  margin-right: 10px;
+  color: #888;
+}
+.search-wrapper input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin-left: 20%;
+}
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+/* --- Layout Structure --- */
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.split-bg {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.white-side {
+  flex: 1;
+  background: #fff;
+}
+.red-side {
+  flex: 1;
+  background: #b33026;
+}
+
+.content-layer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  height: 100%;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* --- Left Side Styling --- */
+.left-section {
+  padding-left: 60px;
+}
+
+.classification-group {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.vertical-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 50px;
+  font-style: italic;
+  color: #1a3026;
+  font-weight: 400;
+}
+
+.list-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 12px 0;
+  width: 220px;
+}
+
+.label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  color: #b33026;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 18px;
+  color: #333;
+}
+
+/* --- Right Side Styling --- */
+.right-section {
+  padding-left: 15%;
+  color: white;
+}
+
+.scientific-name {
+  font-size: 65px;
+  line-height: 1;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+.specs-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.beetle-outline-box {
+  text-align: center;
+}
+.beetle-outline-box img {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 1px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.text-specs p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.ri-map-pin-2-fill {
+  color: #ff9f22;
+  font-size: 25px;
+}
+
+.ri-men-line {
+  color: #ff9f22;
+  font-size: 25px;
+}
+
+.ri-ruler-line {
+  color: #ff9f22;
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.price {
+  font-size: 42px;
+  color: #e6c190;
+  margin-bottom: 30px;
+}
+
+.toggle-item {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.add-btn {
+  background: #d4b996;
+  border: none;
+  padding: 15px 45px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.add-btn:hover {
+  cursor: pointer;
+  background: #e9b064;
+  box-shadow: 2px 2px 5px 2px #e9b064;
+}
+
+/* --- The Jar (Central Focus) --- */
+.center-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.jar-image {
+  height: 78vh;
+  width: auto;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
