@@ -68,8 +68,6 @@ h1 {
 
 h1:hover {
   cursor: pointer;
-  filter: drop-shadow(10px 10px 15px #bc9d48);
-  transition: all 0.5s ease-in-out 0.2s;
 }
 
 .desc {
@@ -101,7 +99,12 @@ h1:hover {
   right: 200px;
   bottom: 100px;
   height: 500px;
+}
+
+.pikachu:hover {
   filter: drop-shadow(8px 8px 10px #ffbb00);
+  transition: all 0.5s ease-in-out 0.1s;
+  cursor: pointer;
 }
 
 /* DOTS */
