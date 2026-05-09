@@ -1,0 +1,395 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+}
+
+.logo {
+  font-size: 64px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4762e, transparent);
+}
+
+.divider-icon {
+  color: #d4762e;
+  font-size: 20px;
+}
+
+/* Drinks Section */
+.drinks-section {
+  padding: 40px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.drinks-grid {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.drink-card {
+  flex: 1;
+  background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+  border-radius: 20px;
+  padding: 30px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.drink-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 100px rgba(212, 118, 46, 0.2);
+  cursor: pointer;
+  border: 2px solid #d4762e;
+  transition: all 0.4s ease-in-out 0.1s;
+}
+
+.badge {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+}
+
+.badge.signature-badge {
+  background-color: rgba(212, 118, 46, 0.15);
+  color: #d4762e;
+  border: 1px solid #d4762e;
+}
+
+.badge.new-badge {
+  background-color: rgba(212, 118, 46, 0.15);
+  color: #d4762e;
+  border: 1px solid #d4762e;
+}
+
+.badge-icon {
+  font-size: 14px;
+}
+
+.drink-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 280px;
+  margin: 40px 0 30px;
+  overflow: hidden;
+}
+
+.drink-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.drink-info {
+  text-align: center;
+}
+
+.drink-name {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.drink-description {
+  font-size: 14px;
+  color: #999999;
+  margin-bottom: 20px;
+}
+
+.drink-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4762e, transparent);
+  margin: 20px auto;
+}
+
+.drink-price {
+  font-size: 32px;
+  font-weight: 700;
+  color: #d4762e;
+  margin-top: 15px;
+}
+
+/* Chef's Special Section */
+.chef-special {
+  background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+  border-radius: 30px;
+  padding: 60px;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  margin: 0 80px 60px;
+  overflow: hidden;
+}
+
+.chef-special:hover {
+  cursor: pointer;
+  box-shadow:
+    inset 1px 1px 20px #d4762e8b,
+    1px 1px 30px #d4762e8b;
+  transition: all 0.4s ease-in-out 0.1s;
+}
+
+.special-image {
+  flex: 0 0 400px;
+  position: relative;
+}
+
+.special-image img,
+.food-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  max-height: 450px;
+}
+
+.special-content {
+  flex: 1;
+}
+
+.special-label {
+  font-size: 13px;
+  color: #d4762e;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.special-title {
+  font-size: 52px;
+  font-weight: 400;
+  margin-bottom: 25px;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.special-subtitle {
+  font-size: 18px;
+  color: #cccccc;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.special-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #999999;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.explore-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  background-color: transparent;
+  border: 2px solid #d4762e;
+  border-radius: 50px;
+  color: #d4762e;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.explore-button:hover {
+  background-color: #d4762e;
+  color: #0a0a0a;
+}
+
+.explore-button::after {
+  content: "→";
+  font-size: 18px;
+}
+
+/* Decorative plant illustration */
+.decorative-plant {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.1;
+  width: 200px;
+  height: 400px;
+  pointer-events: none;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid #222222;
+  padding: 40px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.copyright {
+  color: #666666;
+  font-size: 14px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 60px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footer-nav a {
+  color: #999999;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.footer-nav a:hover {
+  color: #d4762e;
+}
+
+.footer-nav span {
+  color: #d4762e;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-label {
+  color: #999999;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #444444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d4762e;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.social-icon:hover {
+  border-color: #d4762e;
+  color: #d4762e;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .drinks-grid {
+    flex-wrap: wrap;
+  }
+
+  .drink-card {
+    flex: 0 0 calc(50% - 12px);
+  }
+
+  .chef-special {
+    flex-direction: column;
+    padding: 40px;
+  }
+
+  .special-image {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .special-title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 48px;
+  }
+
+  .drinks-section,
+  .chef-special {
+    padding: 30px;
+    margin: 0 30px 40px;
+  }
+
+  .drink-card {
+    flex: 0 0 100%;
+  }
+
+  .footer-nav {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+}
