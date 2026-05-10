@@ -112,11 +112,6 @@ nav ul li a .ext-icon {
   opacity: 0.7;
 }
 
-/* .nav-active {
-  border-bottom: 2px solid var(--white);
-  padding-bottom: 2px; */
-/* } */
-
 .nav-social {
   display: flex;
   align-items: center;
@@ -160,7 +155,7 @@ nav ul li a .ext-icon {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("./assets/background_image.png"); /* ← replace with your bg image filename */
+  background-image: url("./assets/background_image.png");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -331,13 +326,6 @@ nav ul li a .ext-icon {
 }
 
 /* ─── MONKEY IMAGE ─── */
-/*
-      HOW TO RESIZE THE MONKEY:
-      Change --monkey-size below. 
-      Default: 680px. 
-      Increase the value if the monkey appears too small.
-      Example: --monkey-size: 780px;  or  --monkey-size: 850px;
-    */
 :root {
   --monkey-size: 800px;
 }
@@ -360,7 +348,6 @@ nav ul li a .ext-icon {
   height: auto;
   object-fit: contain;
   display: block;
-  /* Fine-tune vertical position if needed */
   margin-bottom: -10px;
 }
 
