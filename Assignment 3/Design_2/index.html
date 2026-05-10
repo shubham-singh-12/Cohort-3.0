@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shinsei Village</title>
+
+    <!-- Remix Icon CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════ NAVBAR ═══════════════ -->
+    <nav>
+        <!-- LOGO: Replace the SVG below with <img src="logo.png" ...> when you have your logo file -->
+        <a href="#" class="nav-logo">
+            <div class="logo-icon">
+                <!-- Placeholder logo SVG -->
+                <img src="./assets/logo.png" alt="">
+            </div>
+        </a>
+
+        <ul>
+            <li><a href="#" class="nav-active">Vision</a></li>
+            <li><a href="#">Collection</a></li>
+            <li><a href="#">Roadmap</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Mint <span class="ext-icon">↗</span></a></li>
+            <li><a href="#">Wallet Checker <span class="ext-icon">↗</span></a></li>
+        </ul>
+
+        <div class="nav-social">
+            <!-- Instagram -->
+            <a href="#" aria-label="Instagram">
+                <i class="ri-instagram-fill"></i>
+            </a>
+            <!-- Telegram -->
+            <a href="#" aria-label="Telegram">
+                <i class="ri-telegram-2-fill"></i>
+            </a>
+            <!-- Discord -->
+            <a href="#" aria-label="Discord">
+                <i class="ri-discord-fill"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero">
+        <!-- Background image layer -->
+        <div class="hero-bg"></div>
+
+        <!-- Hero text content — absolutely positioned elements -->
+        <div class="hero-content">
+            <p class="hero-subtitle">Join the Mystic Adventure</p>
+            <span class="hero-title-left">SHINSEI</span>
+            <span class="hero-title-right">VILLAGE</span>
+            <p class="hero-tagline">Genuine Storytelling Project</p>
+            <div class="hero-btn-row">
+                <a href="#" class="btn-mint">MINT NOW</a>
+            </div>
+        </div>
+
+        <!-- 
+      MONKEY IMAGE:
+      Replace "monkey.png" below with your actual monkey image filename.
+      
+      TO RESIZE: Edit the --monkey-size CSS variable in the <style> block above.
+      Find this line:  --monkey-size: 680px;
+      Increase the number to make the monkey larger, e.g.:
+        --monkey-size: 750px;   ← a bit bigger
+        --monkey-size: 850px;   ← noticeably larger
+        --monkey-size: 950px;   ← very large
+    -->
+        <div class="monkey-wrap">
+            <img src="./assets/monkey_image.png" alt="Shinsei Monkey Warrior" />
+        </div>
+
+        <!-- Curved bottom transition -->
+        <div class="hero-curve">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,0 C360,80 1080,80 1440,0 L1440,80 L0,80 Z" fill="#231620" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ═══════════════ VISION SECTION ═══════════════ -->
+    <section class="vision-section" id="vision">
+        <div class="vision-heading">
+            <h2>VISION</h2>
+            <div class="divider-full">
+                <div class="dl"></div>
+                <div class="d1"></div>
+                <div class="dd"></div>
+                <div class="d2"></div>
+                <div class="dr"></div>
+            </div>
+        </div>
+
+        <div class="vision-columns">
+            <div class="vision-col">
+                <p>
+                    <strong>Shinsei Village</strong> is a collection featuring 1,200 demigod monkeys,
+                    unraveling a mysterious case to save their village. The project is
+                    not just a PFP collection, but a fascinating on-chain storyline.
+                    Through a focus on community engagement, the project seeks
+                    to build the <em>new era of Web3 entertainment</em>.
+                </p>
+            </div>
+            <div class="vision-col">
+                <p>
+                    Each stage of development is aimed to deliver the adventure
+                    experience to the community, as well as provides <em>rewards
+                        and benefits</em> for all holders. Solve weekly puzzles to open
+                    mystic boxes and collect <em>$CLUE</em>! Uncovering the plot is
+                    entirely up to the vote and decisions of the community.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
