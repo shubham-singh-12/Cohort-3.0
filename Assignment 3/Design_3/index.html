@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SunMall - Grilled Potato Chips</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+
+    <!-- Remix Icon CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="page-wrap">
+
+        <!-- ==== NAVBAR ==== -->
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="./assets/Logo.png" alt="" class="logo-icon">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Chips</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="search-wrap">
+                    <i class="ri-search-line"></i>
+                    <input type="text" placeholder="Search for chips...">
+                </div>
+                <div class="nav-divider"></div>
+                <div class="cart-wrap">
+                    <i class="ri-shopping-bag-fill"></i>
+                    <span class="cart-badge">4</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ==== HERO ==== -->
+        <section class="hero">
+
+            <!-- Decorative dots & triangles -->
+            <!-- Yellow dot top-center -->
+            <div class="d" style="top:18px;left:calc(460px + 10px);">
+                <span style="display:block;width:11px;height:11px;background:var(--yellow);border-radius:50%;"></span>
+            </div>
+            <!-- Red triangles top-right -->
+            <div class="d" style="top:22px;right:260px;display:flex;gap:5px;align-items:flex-end;">
+                <div class="tri"
+                    style="border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid var(--red);margin-bottom:3px;">
+                </div>
+                <div class="tri"
+                    style="border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid var(--red);">
+                </div>
+            </div>
+            <!-- Orange triangle -->
+            <div class="d" style="top:18px;right:235px;">
+                <div class="tri"
+                    style="border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:13px solid var(--orange);">
+                </div>
+            </div>
+            <!-- Dark dot top -->
+            <div class="d" style="top:54px;left:calc(460px + 36px);">
+                <span
+                    style="display:block;width:6px;height:6px;background:var(--dark);border-radius:50%;opacity:.35;"></span>
+            </div>
+            <!-- Yellow dot mid-left -->
+            <div class="d" style="top:44%;left:37%;">
+                <span style="display:block;width:9px;height:9px;background:var(--yellow);border-radius:50%;"></span>
+            </div>
+            <!-- Yellow dot bottom-center -->
+            <div class="d" style="bottom:120px;left:43%;">
+                <span style="display:block;width:11px;height:11px;background:var(--yellow);border-radius:50%;"></span>
+            </div>
+            <!-- Dark dot right side -->
+            <div class="d" style="top:54%;right:262px;">
+                <span
+                    style="display:block;width:6px;height:6px;background:var(--dark);border-radius:50%;opacity:.3;"></span>
+            </div>
+            <!-- Yellow dot bottom right -->
+            <div class="d" style="bottom:100px;right:252px;">
+                <span style="display:block;width:10px;height:10px;background:var(--yellow);border-radius:50%;"></span>
+            </div>
+            <!-- Small dark dot left area -->
+            <div class="d" style="top:36%;left:33%;">
+                <span
+                    style="display:block;width:5px;height:5px;background:var(--dark);border-radius:50%;opacity:.22;"></span>
+            </div>
+
+            <!-- ==== LEFT ==== -->
+            <div class="hero-left">
+                <div class="badge-ingredients">
+                    <i class="ri-star-fill"></i>
+                    100% Real Ingredients
+                </div>
+
+                <h1 class="hero-title">
+                    EAT OUR <span class="g">GRILLED</span><br>
+                    POTATO CHIPS
+                </h1>
+
+                <div class="underlines"><span></span><span></span><span></span></div>
+
+                <p class="hero-desc">
+                    Satisfying savory Chinese meat sauce chips<br>
+                    without any hard-to-find ingredients.
+                </p>
+
+                <div class="hero-cta">
+                    <button class="btn-addcart">
+                        <span class="btn-cart-circle">
+                            <i class="ri-shopping-bag-3-line"></i>
+                        </span>
+                        <span class="btn-addcart-label">Add to Cart</span>
+                    </button>
+                    <div class="qty">
+                        <button class="qty-btn" id="qminus">−</button>
+                        <span class="qty-num" id="qnum">2</span>
+                        <button class="qty-btn" id="qplus">+</button>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div class="feat">
+                        <div class="feat-icon fg">
+                            <i class="ri-leaf-fill"></i></i>
+                            </svg>
+                        </div>
+                        <div class="feat-text">
+                            <b>100% Natural</b>
+                            <small>No artificial flavors</small>
+                        </div>
+                    </div>
+                    <div class="feat">
+                        <div class="feat-icon fo">
+                            <i class="ri-fire-fill"></i>
+                        </div>
+                        <div class="feat-text">
+                            <b>Oven Grilled</b>
+                            <small>Not fried</small>
+                        </div>
+                    </div>
+                    <div class="feat">
+                        <div class="feat-icon fr">
+                            <i class="ri-heart-fill"></i>
+                        </div>
+                        <div class="feat-text">
+                            <b>Tasty &amp; Crunchy</b>
+                            <small>Irresistible bite</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==== CENTER ==== -->
+            <div class="hero-center">
+                <div class="chip-circle"></div>
+
+                <div class="chip-img-wrap">
+
+                    <!-- Main Chips Image (Image 1) -->
+                    <img src="./assets/chips_image_1.png" alt="Too Yumm Veggie Stix" class="chip-main">
+                </div>
+            </div>
+
+            <!-- ==== RIGHT ==== -->
+            <div class="hero-right">
+                <div class="fl-item">
+                    <div class="fl-icon icg">🌶️</div>
+                    <div class="fl-text">
+                        <b>Extra Chili</b>
+                        <p>Zha Jiang mian is crazy hot<br>even when it's simplified</p>
+                    </div>
+                </div>
+                <div class="fl-item">
+                    <div class="fl-icon icr">🍖</div>
+                    <div class="fl-text">
+                        <b>Beef Flavour</b>
+                        <p>Comes with a lot extra energy<br>calories and Oxizen</p>
+                    </div>
+                </div>
+                <div class="fl-item">
+                    <div class="fl-icon ico">🔥</div>
+                    <div class="fl-text">
+                        <b>Smokey Sauce</b>
+                        <p>The meat sauce is kind of<br>reminiscent of a Chinese.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ==== FLAVOURS ==== -->
+        <div class="flavours">
+
+            <div class="dots-pat">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="fl-label">
+                <div>
+                    <h3>OUR TOP<br>FLAVOURS</h3>
+                    <div class="fl-under"><span></span><span></span></div>
+                </div>
+                <div class="fl-arrows">
+                    <button class="arr-btn">&#8592;</button>
+                    <button class="arr-btn">&#8594;</button>
+                </div>
+            </div>
+
+            <div class="prod-cards">
+
+                <!-- ==== Chips Card 2 ==== -->
+                <div class="prod-card">
+                    <img src="./assets/chips_image_2.png" alt="Black Barbecue" class="card-img">
+                    <div class="card-body">
+                        <div class="card-name">Black Barbecue</div>
+                        <div class="card-stars">
+                            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                                class="star">★</span><span class="star">★</span>
+                            <span class="c-rating">(4.8)</span>
+                        </div>
+                        <div class="card-price">$12.30</div>
+                        <button class="btn-order">Order Now <span class="btn-order-arr">→</span></button>
+                    </div>
+                </div>
+
+                <!-- ==== Chips Card 3 ==== -->
+                <div class="prod-card">
+                    <img src="./assets/chips_image_3.png" alt="Mr. Potato" class="card-img">
+                    <div class="card-body">
+                        <div class="card-name">Mr. Potato</div>
+                        <div class="card-stars">
+                            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                                class="star">★</span><span class="star h">★</span>
+                            <span class="c-rating">(4.9)</span>
+                        </div>
+                        <div class="card-price">$15.89</div>
+                        <button class="btn-order">Order Now <span class="btn-order-arr">→</span></button>
+                    </div>
+                </div>
+
+                <!-- ==== Chips Card 4 ==== -->
+                <div class="prod-card">
+                    <img src="./assets/chips_image_4.png" alt="Tom Yomm" class="card-img">
+                    <div class="card-body">
+                        <div class="card-name">Tom Yomm</div>
+                        <div class="card-stars">
+                            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span
+                                class="star">★</span><span class="star h">★</span>
+                            <span class="c-rating">(4.7)</span>
+                        </div>
+                        <div class="card-price">$11.50</div>
+                        <button class="btn-order">Order Now <span class="btn-order-arr">→</span></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
