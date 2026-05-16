@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexFit</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <!-- Remix Icon CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="grid">
+
+        <!-- HERO — male portrait · rows 1–2, col 1 -->
+        <div class="cell area-hero">
+            <img src="./assets/Person_1.png" alt="Athlete"
+                onerror="this.style.display='none';this.parentElement.style.background='#3a3028'" />
+            <div class="stats-bar">
+                <div class="pill">
+                    <span class="pi"><i class="ri-fire-line"></i></span>
+                    <span class="pv">35</span>
+                    <span class="pl">Min</span>
+                </div>
+                <div class="pill">
+                    <span class="pi"><i class="ri-pulse-line"></i></span>
+                    <span class="pv">NO</span>
+                    <span class="pl">Excuses</span>
+                </div>
+                <div class="pill">
+                    <span class="pi"><i class="ri-run-line"></i></span>
+                    <span class="pv">7</span>
+                    <span class="pl">Days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- APP — yellow promo · row 1, col 2 -->
+        <div class="cell area-app">
+            <div class="bars">
+                <img src="./assets/image.png" alt="">
+            </div>
+            <h2>USE OUR APP FOR<br />COMPILING A QUALITY<br />WORKOUT!</h2>
+            <div class="store-row">
+                <a href="#" class="sbtn">
+                    <i class="ri-google-play-line"></i>
+                    GET IT ON Google Play
+                </a>
+                <a href="#" class="sbtn">
+                    <i class="ri-app-store-line"></i>
+                    Download on the App Store
+                </a>
+            </div>
+        </div>
+
+        <!-- FONT — type spec · row 1, col 3 -->
+        <div class="cell area-font">
+            <div>
+                <div class="flabel">Headings Font</div>
+                <div class="fhead">SUISSE BP INT'L</div>
+            </div>
+            <div>
+                <div class="flabel">Body</div>
+                <div class="fbody">SUISSE INT'L</div>
+            </div>
+            <div class="swatches">
+                <div class="sw sw-s"></div>
+                <div class="sw sw-y"></div>
+                <div class="sw sw-b"></div>
+            </div>
+        </div>
+
+        <!-- LOGO — FlexFit cream logo · rows 2–3, cols 2–3 -->
+        <div class="cell area-logo">
+            <div class="logo-lock">
+                <img src="./assets/logo.png" alt="">
+                <span class="logo-name">FlexFit</span>
+            </div>
+        </div>
+
+        <!-- OWNCARD — text card upper-right · row 2, col 4 -->
+        <div class="cell area-owncard">
+            <div class="tagrow">
+                <div class="tdots">
+                    <span class="ty"></span>
+                    <span class="tb"></span>
+                </div>
+                TIME FOR FITNESS — 23
+            </div>
+            <h2>OWN YOUR<br />STRENGTH,<br />OWN YOU</h2>
+            <div>
+                <div class="addr-card">
+                    <div class="addr-row">
+                        <span class="apin"><i class="ri-map-pin-line"></i></span>
+                        <div>12834 FITNESS LN<br />BROOKLYN, NY</div>
+                    </div>
+                    <div class="aweb">FLEXFIT.COM</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- REDEF — Redefine card · row 3, col 1 -->
+        <div class="cell area-redef">
+            <h3>REDEFINE YOUR<br />LIMITS, ACHIEVE YOUR<br />FITNESS GOALS</h3>
+            <div class="luxrow">
+                <div class="luxicon">
+                    <img src="./assets/logo.png" alt="">
+                </div>
+                <div class="luxtxt">Luxury Fitness<br />Experience</div>
+            </div>
+        </div>
+
+        <!-- PHONE — salmon phone mockup · rows 3–4, col 4 -->
+        <div class="cell area-phone">
+            <div class="mobhead">
+                <div class="mobbrand">
+                    <div class="mobicon">
+                        <img src="./assets/logo.png" alt="">
+                    </div>
+                    <span class="mobname">FlexFit</span>
+                </div>
+                <span class="mobtime">2h</span>
+            </div>
+            <div class="phonewrap">
+                <div class="phone-shell">
+                    <img src="./assets/Person_2.png" alt="App user" />
+                    <div class="phone-overlay">
+                        <div class="unlock">UNLOCK YOUR<br />POTENTIAL</div>
+                        <div class="ctarow">
+                            <button class="sigbtn">SIGN UP</button>
+                            <div class="ref-btn">↻</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISIT — female photo + yellow band · row 4, col 1 -->
+        <div class="cell area-visit">
+            <!-- left: female photo portion -->
+            <div class="visit-photo">
+                <img src="./assets/Female_2.png" alt="Athlete" />
+            </div>
+            <div class="cell area-train">
+                <h3>TRAIN WITH THE<br />BEST PERSONAL<br />TRAINERS</h3>
+                <div>
+                    <div class="tcount">
+                        <span class="tnum">48</span>
+                        <span class="tplus">+</span>
+                    </div>
+                    <div class="tlbl">Expert Trainers</div>
+                </div>
+                <div class="avatars">
+                    <!-- real photo avatars — fall back to coloured initials -->
+                    <div class="av">
+                        <img src="https://images.unsplash.com/photo-1777640642093-40f87f2bf61f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Trainer"
+                            onerror="this.outerHTML='<div class=\'av\'><div class=\'av-ph ap1\'>JT</div></div>'" />
+                    </div>
+                    <div class="av">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Trainer"
+                            onerror="this.outerHTML='<div class=\'av\'><div class=\'av-ph ap2\'>MR</div></div>'" />
+                    </div>
+                    <div class="av">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Trainer"
+                            onerror="this.outerHTML='<div class=\'av\'><div class=\'av-ph ap3\'>SL</div></div>'" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEMALE — salmon bg, female athlete with braids · row 4, col 3 -->
+        <div class="cell area-female">
+            <!-- large yellow F-chevron behind athlete -->
+            <div class="ym">
+                <img src="./assets/logo.png" alt="">
+            </div>
+            <img src="./assets/Female_1.png" alt="Female athlete"
+                onerror="this.style.display='none';this.parentElement.style.background='#d4968a'" />
+        </div>
+
+    </div>
+</body>
+
+</html>

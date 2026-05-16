@@ -1,0 +1,684 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --yellow: #f5d000;
+  --black: #111111;
+  --white: #ffffff;
+  --cream: #f0e9d6;
+  --salmon: #e8a89c;
+  --dark: #1a1a1a;
+  --gap: 11px;
+  --r: 18px;
+}
+
+html,
+body {
+  width: 100%;
+  background: var(--dark);
+  font-family: "Barlow", sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas:
+    "hero  app    font    strength"
+    "hero  logo   logo    strength "
+    "redef logo   logo    phone   "
+    "visit visit  female  phone   ";
+  grid-template-columns: 1fr 1.45fr 1fr 1fr;
+  grid-template-rows: 220px 220px 210px 230px;
+  gap: var(--gap);
+  padding: var(--gap);
+}
+
+/* ===================== shared cell base ===================== */
+.cell {
+  border-radius: var(--r);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.cell:hover {
+  transform: scale(1.013);
+  z-index: 10;
+}
+
+/* ========== HERO  — male portrait  (spans rows 1–2) ========== */
+.area-hero {
+  grid-area: hero;
+  background: #2c2720;
+}
+.area-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.stats-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 6px;
+  padding: 14px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.84) 55%);
+}
+.pill {
+  flex: 1;
+  background: rgba(24, 24, 24, 0.88);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.pill .pi {
+  font-size: 1.2rem;
+  color: white;
+}
+.pill .pv {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: #fff;
+}
+.pill .pl {
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ========= APP  — yellow promo card  (row 1, col 2) ========= */
+.area-app {
+  grid-area: app;
+  background: var(--yellow);
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 32px;
+}
+.bars img {
+  display: block;
+  height: -3px;
+  width: 53px;
+  border-radius: 2px;
+}
+
+.area-app h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.32rem;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1.08;
+  letter-spacing: -0.2px;
+}
+.store-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sbtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--black);
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 11px;
+  text-decoration: none;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.sbtn i {
+  font-size: 25px;
+  font-weight: 500;
+}
+.sbtn:hover {
+  opacity: 0.82;
+}
+
+/* ========== FONT  — type spec card  (row 1, col 3) ========== */
+.area-font {
+  grid-area: font;
+  background: var(--white);
+  color: var(--black);
+  padding: 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+}
+.flabel {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+.fhead {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 2.3rem;
+  letter-spacing: -0.3px;
+}
+.fbody {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.swatches {
+  display: flex;
+  gap: 5px;
+  margin-top: 6px;
+}
+.sw {
+  height: 9px;
+  border-radius: 5px;
+  flex: 1;
+}
+.sw-s {
+  background: var(--salmon);
+}
+.sw-y {
+  background: var(--yellow);
+}
+.sw-b {
+  background: var(--black);
+}
+
+/* = STRENGTH  — "Own Your Strength" white card (row 1, col 4) = */
+.area-strength {
+  grid-area: strength;
+  background: var(--white);
+  color: var(--black);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.tagrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #888;
+}
+.tdots {
+  display: flex;
+  gap: 3px;
+}
+.tdots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+.ty {
+  background: var(--yellow);
+}
+.tb {
+  background: var(--black);
+}
+.area-strength h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 0.97;
+  letter-spacing: -0.4px;
+}
+.addr-card {
+  background: var(--salmon);
+  border-radius: 10px;
+  padding: 30px 12px;
+}
+.addr-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--black);
+  margin: auto auto auto 10px;
+}
+.apin {
+  font-size: 1.2rem;
+}
+.aweb {
+  margin: 25px auto -19px 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--black);
+}
+
+/* ====== REDEF  — "Redefine" white card  (row 3, col 1) ====== */
+.area-redef {
+  grid-area: redef;
+  background: var(--white);
+  color: var(--black);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.area-redef h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  margin: 0px auto 10px 10px;
+}
+.luxrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.luxicon {
+  width: 34px;
+  height: 34px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid crimson;
+}
+.luxicon img {
+  width: 16px;
+  height: 16px;
+  color: yellow;
+}
+.luxtxt {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 1.55;
+}
+
+/* ==== LOGO  — FlexFit cream center  (rows 2–3, cols 2–3) ==== */
+.area-logo {
+  grid-area: logo;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-lock {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-lock img {
+  width: 100px;
+  height: 100px;
+}
+.logo-name {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--black);
+  letter-spacing: 3px;
+}
+
+/*  OWNCARD  — "Own Your Strength" text (row 2, col 4)
+    Upper-right cell with heading + addres */
+.area-owncard {
+  grid-area: strength;
+  background: var(--white);
+  color: var(--black);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.area-owncard h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 3.65rem;
+  font-weight: 900;
+  line-height: 0.97;
+  letter-spacing: -0.4px;
+}
+
+/*  PHONE  — salmon phone mockup  (rows 3–4, col 4)
+    Lower-right cell spanning 2 rows */
+.area-phone {
+  grid-area: phone;
+  background: var(--salmon);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px 0;
+  gap: 12px;
+}
+.mobhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mobbrand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.mobicon {
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobicon img {
+  width: 20px;
+}
+.mobname {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--black);
+}
+.mobtime {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.45);
+}
+.phonewrap {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.phone-shell {
+  width: 145px;
+  height: 100%;
+  max-height: 330px;
+  border-radius: 26px;
+  border: 7px solid var(--black);
+  background: #1e1e1e;
+  position: relative;
+  overflow: hidden;
+}
+.phone-shell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  background-color: rgb(73, 72, 72);
+}
+.phone-shell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 13px;
+  background: var(--black);
+  border-radius: 0 0 9px 9px;
+  z-index: 5;
+}
+.phone-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9) 50%);
+  padding: 30px 11px 13px;
+  z-index: 4;
+}
+.unlock {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.08;
+}
+.ctarow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.sigbtn {
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 6px 13px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+}
+.ref-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.76rem;
+}
+
+/*  VISIT  — col1 row4
+    Yellow background, female photo left portion,
+    dark semi-transparent band bottom with "Visit site" */
+.area-visit {
+  grid-area: visit;
+  background: var(--salmon);
+  display: flex;
+  align-items: stretch;
+}
+/* photo takes ~60% of left side */
+.visit-photo {
+  position: relative;
+  flex: 0 0 50%;
+  overflow: hidden;
+}
+.visit-photo img {
+  position: absolute;
+  inset: 0;
+  width: 120%;
+  height: 150%;
+  object-fit: contain;
+  object-position: top center;
+  top: -23px;
+}
+/* ======== dark bottom band that holds the visit link ======== */
+.visit-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(40, 35, 10, 0.72);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+}
+.visit-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #fff;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.varr {
+  width: 22px;
+  height: 22px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+/* yellow right portion — pure yellow band */
+.visit-yellow {
+  flex: 1;
+  background: var(--yellow);
+}
+
+/* TRAIN  — col2 row4
+   Salmon background, left portion = text content
+   heading + 48+ + avatars (no inner photo) */
+.area-train {
+  /* grid-area: train; */
+  /* background: var(--salmon); */
+  padding: 26px 135px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.area-train h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.2px;
+  color: var(--black);
+}
+.tcount {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.tnum {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--black);
+}
+
+.tplus {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--black);
+}
+
+.tlbl {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.avatars {
+  display: flex;
+}
+
+.av {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid var(--salmon);
+  overflow: hidden;
+  margin-left: -10px;
+  flex-shrink: 0;
+}
+
+.av:first-child {
+  margin-left: 0;
+}
+.av img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.av-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ap1 {
+  background: #7a6352;
+}
+.ap2 {
+  background: #3d2b1e;
+}
+.ap3 {
+  background: #c8a47a;
+}
+
+/* FEMALE  — col3 row4
+   Salmon background, female athlete with braids,
+   large yellow F-chevron logo pattern behind her */
+.area-female {
+  grid-area: female;
+  background: rgb(205, 204, 204);
+  overflow: hidden;
+}
+.area-female img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+/* big yellow F-chevron watermark behind athlete */
+.area-female .ym {
+  position: absolute;
+  left: -20px;
+  pointer-events: none;
+  z-index: 1;
+  width: 20px;
+}
+.area-female .ym img {
+  width: 400px;
+  height: 400px;
+  opacity: 1;
+}
+/* ================ photo sits above watermark ================ */
+.area-female img {
+  z-index: 2;
+}
