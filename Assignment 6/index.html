@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Task Manager</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- EXTERNAL CSS FILE -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- TOAST -->
+    <div id="toast"></div>
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+        <div class="topbar-brand">
+            <div class="brand-icon">✓</div>
+            <span>DOM Task Manager</span>
+        </div>
+        <div class="topbar-right">
+            <!-- Nav tabs (desktop) -->
+            <nav class="nav-tabs" id="navTabs">
+                <button class="nav-tab active" data-section="tasks">📋 Tasks</button>
+                <button class="nav-tab" data-section="demo-attr">🔬 Attr vs Prop</button>
+                <button class="nav-tab" data-section="demo-events">⚡ Events</button>
+                <button class="nav-tab" data-section="pipeline">🌐 Pipeline</button>
+            </nav>
+            <!-- Theme toggle -->
+            <button class="theme-toggle" id="themeBtn" data-theme-toggle>
+                <div class="toggle-track">
+                    <div class="toggle-thumb"></div>
+                </div>
+                <span id="themeLabel">Light</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile nav -->
+    <div class="app-wrapper" style="padding-top:0">
+        <select class="mobile-select" id="mobileNav">
+            <option value="tasks">📋 Tasks</option>
+            <option value="demo-attr">🔬 Attributes vs Properties</option>
+            <option value="demo-events">⚡ Event Propagation</option>
+            <option value="pipeline">🌐 Browser Pipeline</option>
+        </select>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!--  MAIN APP                                          -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <main class="app-wrapper">
+
+        <!-- ─── SECTION: TASKS ─────────────────────────── -->
+        <section class="section active" id="section-tasks">
+
+            <div class="section-header">
+                <h1>Task Manager</h1>
+                <p>Create, manage, and track your tasks with full DOM manipulation.</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-row">
+                <div class="stat-card total">
+                    <span class="stat-label">Total Tasks</span>
+                    <span class="stat-value" id="statTotal">0</span>
+                </div>
+                <div class="stat-card completed">
+                    <span class="stat-label">Completed</span>
+                    <span class="stat-value" id="statCompleted">0</span>
+                </div>
+                <div class="stat-card pending">
+                    <span class="stat-label">Pending</span>
+                    <span class="stat-value" id="statPending">0</span>
+                </div>
+                <div class="stat-card deleted">
+                    <span class="stat-label">Deleted</span>
+                    <span class="stat-value" id="statDeleted">0</span>
+                </div>
+            </div>
+
+            <!-- Add Task Form -->
+            <div class="card form-card">
+                <h2>➕ Add New Task</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskInput">Task Title</label>
+                        <!--
+            NOTE: input.value = current live value (Property)
+            input.getAttribute("value") = initial value from HTML (Attribute)
+            They differ once the user types!
+          -->
+                        <input type="text" id="taskInput" placeholder="What needs to be done?" value=""
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="categorySelect">Category</label>
+                        <select id="categorySelect">
+                            <option value="work">💼 Work</option>
+                            <option value="personal">🏠 Personal</option>
+                            <option value="study">📚 Study</option>
+                            <option value="health">💪 Health</option>
+                            <option value="other">✨ Other</option>
+                        </select>
+                    </div>
+                    <button class="btn-add" id="addTaskBtn">Add Task</button>
+                </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search tasks…">
+                </div>
+                <select class="filter-select" id="filterSelect">
+                    <option value="all">All Categories</option>
+                    <option value="work">💼 Work</option>
+                    <option value="personal">🏠 Personal</option>
+                    <option value="study">📚 Study</option>
+                    <option value="health">💪 Health</option>
+                    <option value="other">✨ Other</option>
+                </select>
+                <select class="filter-select" id="statusFilter">
+                    <option value="all">All Status</option>
+                    <option value="pending">⏳ Pending</option>
+                    <option value="completed">✅ Completed</option>
+                </select>
+                <button class="btn-clear" id="clearAllBtn">🗑 Clear All</button>
+            </div>
+
+            <!-- Task List — single delegated listener attached here -->
+            <div id="task-container">
+                <div class="empty-state">
+                    <div class="empty-icon">📭</div>
+                    <p>No tasks yet. Add one above!</p>
+                </div>
+            </div>
+
+            <!-- Document Fragment Demo -->
+            <div class="frag-demo-card">
+                <h3>📦 DocumentFragment Demo <span
+                        style="font-size:.75rem;color:var(--text3);font-weight:400">(Bonus)</span></h3>
+                <p>Click to batch-insert 5 items using <code
+                        style="font-family:var(--mono);color:var(--accent)">document.createDocumentFragment()</code> —
+                    avoids repeated reflows by building the DOM off-screen first.</p>
+                <button class="btn-check" id="fragBtn" style="margin-bottom:12px">Insert via Fragment</button>
+                <div class="frag-list" id="fragList"></div>
+            </div>
+
+        </section>
+
+        <!-- ─── SECTION: ATTR vs PROP ──────────────────── -->
+        <section class="section" id="section-demo-attr">
+
+            <div class="section-header">
+                <h1>Attributes vs Properties</h1>
+                <p>Understand the key difference between HTML attributes and DOM properties.</p>
+            </div>
+
+            <div class="attr-demo-card">
+                <h3>🔬 Live Demonstration</h3>
+                <p style="font-size:.85rem;color:var(--text2);margin-bottom:14px">
+                    Type something in the input, then click <strong>Check Difference</strong> to see how
+                    <code style="font-family:var(--mono);color:var(--accent)">input.value</code> (DOM Property) differs
+                    from
+                    <code style="font-family:var(--mono);color:var(--accent)">input.getAttribute("value")</code> (HTML
+                    Attribute).
+                </p>
+                <div class="attr-input-wrap">
+                    <input type="text" id="attrDemoInput" value="initial value" placeholder="Type here…">
+                    <button class="btn-check" id="checkAttrBtn">Check Difference</button>
+                </div>
+                <div class="attr-results">
+                    <div class="attr-result-box">
+                        <div class="attr-result-label">input.value (Property)</div>
+                        <div class="attr-result-code">input.value</div>
+                        <div class="attr-result-value" id="propResult">—</div>
+                        <div style="font-size:.72rem;color:var(--text3);margin-top:6px;line-height:1.5">
+                            Reflects the <em>current live value</em> — changes as user types.
+                        </div>
+                    </div>
+                    <div class="attr-result-box">
+                        <div class="attr-result-label">getAttribute("value") (Attribute)</div>
+                        <div class="attr-result-code">input.getAttribute("value")</div>
+                        <div class="attr-result-value" id="attrResult">—</div>
+                        <div style="font-size:.72rem;color:var(--text3);margin-top:6px;line-height:1.5">
+                            Reflects the <em>original HTML value</em> — stays as set in HTML.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code explanation -->
+            <div class="code-block">
+                <div><span class="c-gray">// ── HTML in the file ───────────────────────────</span></div>
+                <div><span class="c-white">&lt;input type="text" id="attrDemoInput" <span class="c-amber">value="initial
+                            value"</span>&gt;</span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// ── After user types "hello" ────────────────────</span></div>
+                <div><span class="c-white">const input = document.getElementById(<span
+                            class="c-green">"attrDemoInput"</span>);</span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// PROPERTY: reflects current live state of DOM node</span></div>
+                <div><span class="c-blue">input.value</span><span class="c-gray"> // → "hello" ← what user typed</span>
+                </div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// ATTRIBUTE: reflects the original HTML markup value</span></div>
+                <div><span class="c-amber">input.getAttribute(<span class="c-green">"value"</span>)</span><span
+                        class="c-gray"> // → "initial value" ← from HTML</span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// KEY INSIGHT:</span></div>
+                <div><span class="c-gray">// Attribute = source of truth at parse time</span></div>
+                <div><span class="c-gray">// Property = live current state of the element</span></div>
+                <div><span class="c-gray">// They start equal; diverge once user interacts.</span></div>
+            </div>
+
+            <!-- data-* attribute demo -->
+            <div class="sub-heading" style="margin-top:24px">
+                <span>data-* Attributes & dataset API</span>
+                <span class="badge">Required</span>
+            </div>
+
+            <div class="attr-demo-card">
+                <h3>📦 dataset Demo</h3>
+                <div class="code-block">
+                    <div><span class="c-gray">// Every task card has these custom data attributes:</span></div>
+                    <div><span class="c-white">&lt;div class="task-card"</span></div>
+                    <div><span class="c-amber">&nbsp;&nbsp;&nbsp;&nbsp; data-id</span>=<span
+                            class="c-green">"task-42"</span></div>
+                    <div><span class="c-amber">&nbsp;&nbsp;&nbsp;&nbsp; data-status</span>=<span
+                            class="c-green">"pending"</span></div>
+                    <div><span class="c-amber">&nbsp;&nbsp;&nbsp;&nbsp; data-category</span>=<span
+                            class="c-green">"work"</span><span class="c-white">&gt;</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-gray">// Reading with getAttribute()</span></div>
+                    <div><span class="c-blue">card.getAttribute(<span class="c-green">"data-status"</span>)</span><span
+                            class="c-gray"> // → "pending"</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-gray">// Reading via dataset (camelCase access)</span></div>
+                    <div><span class="c-blue">card.dataset.status</span><span class="c-gray"> // → "pending"</span>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-gray">// Setting an attribute</span></div>
+                    <div><span class="c-amber">card.setAttribute(<span class="c-green">"data-status"</span>, <span
+                                class="c-green">"completed"</span>)</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-gray">// Checking existence</span></div>
+                    <div><span class="c-blue">card.hasAttribute(<span class="c-green">"data-status"</span>)</span><span
+                            class="c-gray"> // → true</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-gray">// Removing an attribute</span></div>
+                    <div><span class="c-red">card.removeAttribute(<span class="c-green">"data-status"</span>)</span>
+                    </div>
+                </div>
+
+                <div id="datasetLiveDemo" style="margin-top:12px;">
+                    <button class="btn-check" id="datasetDemoBtn">▶ Run Dataset Demo</button>
+                    <div id="datasetOutput"
+                        style="margin-top:12px;font-size:.82rem;color:var(--text2);line-height:1.8;"></div>
+                </div>
+            </div>
+
+            <!-- DOM Methods -->
+            <div class="sub-heading" style="margin-top:24px">
+                <span>DOM Insertion Methods</span>
+                <span class="badge">Required</span>
+            </div>
+            <div class="attr-demo-card">
+                <h3>📌 append / prepend / before / after / replaceWith / remove</h3>
+                <div class="code-block">
+                    <span class="c-gray">// All DOM insertion methods used in this project:</span><br>
+                    <span class="c-white"><br></span>
+                    <span class="c-gray">// 1. append() — adds to END of parent (used when adding tasks)</span><br>
+                    <span class="c-blue">container.append(newCard)</span><br>
+                    <span class="c-white"><br></span>
+                    <span class="c-gray">// 2. prepend() — adds to START of parent (used for "priority"
+                        tasks)</span><br>
+                    <span class="c-blue">container.prepend(newCard)</span><br>
+                    <span class="c-white"><br></span>
+                    <span class="c-gray">// 3. before() — inserts before an element (sibling)</span><br>
+                    <span class="c-blue">existingCard.before(newCard)</span><br>
+                    <span class="c-white"><br></span>
+                    <span class="c-gray">// 4. after() — inserts after an element (sibling)</span><br>
+                    <span class="c-blue">existingCard.after(newCard)</span><br>
+                    <span class="c-white"><br></span>
+                    <span class="c-gray">// 5. replaceWith() — swaps an element (used in Edit mode)</span><br>
+                    <span class="c-blue">oldCard.replaceWith(updatedCard)</span><br>
+                    <span class="c-white"><br></span>
+                    <span class="c-gray">// 6. remove() — removes element from DOM (used in Delete)</span><br>
+                    <span class="c-amber">card.remove()</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ─── SECTION: EVENTS ────────────────────────── -->
+        <section class="section" id="section-demo-events">
+
+            <div class="section-header">
+                <h1>Event Propagation</h1>
+                <p>Visualize Bubbling, Capturing, and Event Delegation in action.</p>
+            </div>
+
+            <div class="prop-demo-grid">
+
+                <!-- BUBBLING -->
+                <div class="prop-box">
+                    <h3>🫧 Event Bubbling</h3>
+                    <p>Events travel <strong>bottom → up</strong>: Child fires first, then Parent, then Grandparent.
+                        Default behavior.</p>
+                    <div class="grandparent-box" id="bubble-grandparent">
+                        <div class="box-label">Grandparent</div>
+                        <div class="parent-box" id="bubble-parent">
+                            <div class="box-label">Parent</div>
+                            <button class="child-btn" id="bubble-child">Click Me (Child)</button>
+                        </div>
+                    </div>
+                    <div class="console-output" id="bubbleConsole">
+                        <div style="color:#4a5280;font-size:.75rem">// Click the button to see bubbling order…</div>
+                    </div>
+                    <button class="btn-check"
+                        style="margin-top:10px;width:100%;background:var(--surface2);color:var(--text2);border:1px solid var(--border);"
+                        id="clearBubble">Clear Log</button>
+                </div>
+
+                <!-- CAPTURING -->
+                <div class="prop-box">
+                    <h3>🎯 Event Capturing</h3>
+                    <p>Events travel <strong>top → down</strong>: Grandparent fires first, then Parent, then Child. Use
+                        <code style="font-family:var(--mono);color:var(--accent)">{ capture: true }</code>.
+                    </p>
+                    <div class="grandparent-box" id="capture-grandparent">
+                        <div class="box-label">Grandparent</div>
+                        <div class="parent-box" id="capture-parent">
+                            <div class="box-label">Parent</div>
+                            <button class="child-btn" id="capture-child">Click Me (Child)</button>
+                        </div>
+                    </div>
+                    <div class="console-output" id="captureConsole">
+                        <div style="color:#4a5280;font-size:.75rem">// Click the button to see capturing order…</div>
+                    </div>
+                    <button class="btn-check"
+                        style="margin-top:10px;width:100%;background:var(--surface2);color:var(--text2);border:1px solid var(--border);"
+                        id="clearCapture">Clear Log</button>
+                </div>
+
+            </div>
+
+            <!-- Code explanation -->
+            <div class="code-block">
+                <span class="c-gray">// ── EVENT BUBBLING (default) ───────────────────────────────</span>
+                <span class="c-gray">// Listener added with capture: false (default)</span>
+                <span class="c-white">grandparent.addEventListener(<span class="c-green">"click"</span>, () =>
+                    console.log(<span class="c-amber">"Grandparent"</span>))<span class="c-gray"> // fires
+                        3rd</span></span>
+                <span class="c-white">parent.addEventListener(<span class="c-green">"click"</span>, () =>
+                    console.log(<span class="c-amber">"Parent"</span>)) <span class="c-gray"> // fires 2nd</span></span>
+                <span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, () =>
+                    console.log(<span class="c-amber">"Child"</span>)) <span class="c-gray"> // fires 1st</span></span>
+                <span class="c-white"></span>
+                <span class="c-gray">// Output order → Child → Parent → Grandparent</span>
+                <span class="c-white"></span>
+                <span class="c-gray">// ── EVENT CAPTURING ────────────────────────────────────────</span>
+                <span class="c-gray">// Listener added with { capture: true }</span>
+                <span class="c-white">grandparent.addEventListener(<span class="c-green">"click"</span>, () =>
+                    console.log(<span class="c-amber">"Grandparent"</span>), <span class="c-cyan">{ capture: true
+                        }</span>)<span class="c-gray"> // fires 1st</span></span>
+                <span class="c-white">parent.addEventListener(<span class="c-green">"click"</span>, () =>
+                    console.log(<span class="c-amber">"Parent"</span>), <span class="c-cyan">{ capture: true
+                        }</span>)<span class="c-gray"> // fires 2nd</span></span>
+                <span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, () =>
+                    console.log(<span class="c-amber">"Child"</span>), <span class="c-cyan">{ capture: true
+                        }</span>)<span class="c-gray"> // fires 3rd</span></span>
+                <span class="c-white"></span>
+                <span class="c-gray">// Output order → Grandparent → Parent → Child</span>
+                <span class="c-white"></span>
+                <span class="c-gray">// ── STOP PROPAGATION ───────────────────────────────────────</span>
+                <span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, (e) => {</span>
+                <span class="c-white"> e.stopPropagation() <span class="c-gray">// prevents event from reaching
+                        parent/grandparent</span></span>
+                <span class="c-white">})</span>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- EVENT DELEGATION -->
+            <div class="sub-heading">
+                <span>Event Delegation</span>
+                <span class="badge">Key Concept</span>
+            </div>
+
+            <div class="card" style="padding:24px;margin-bottom:20px;">
+                <h3 style="font-size:.95rem;font-weight:600;margin-bottom:10px;">🎪 How Task Manager Uses Delegation
+                </h3>
+                <p style="font-size:.84rem;color:var(--text2);line-height:1.6;margin-bottom:14px;">
+                    Instead of attaching 3 listeners (edit, complete, delete) to each task card — which would mean
+                    N×3 listeners — we attach <strong>ONE listener</strong> to the parent container and check
+                    <code style="font-family:var(--mono);color:var(--accent)">e.target.dataset.action</code>.
+                </p>
+                <div class="code-block">
+                    <span class="c-gray">// ── WITHOUT delegation (bad — N×3 listeners) ───────────────</span>
+                    <span class="c-red">tasks.forEach(task => {</span>
+                    <span class="c-red"> task.querySelector(".edit").addEventListener("click", handleEdit)</span>
+                    <span class="c-red"> task.querySelector(".complete").addEventListener("click",
+                        handleComplete)</span>
+                    <span class="c-red"> task.querySelector(".delete").addEventListener("click", handleDelete)</span>
+                    <span class="c-red">})</span>
+                    <span class="c-white"></span>
+                    <span class="c-gray">// ── WITH delegation (good — 1 listener total) ──────────────</span>
+                    <span class="c-green">document.getElementById("task-container").addEventListener("click", (e) =>
+                        {</span>
+                    <span class="c-green"> const action = e.target.closest("[data-action]")?.dataset.action</span>
+                    <span class="c-green"> const card = e.target.closest(".task-card")</span>
+                    <span class="c-green"> if (!card) return</span>
+                    <span class="c-white"></span>
+                    <span class="c-green"> if (action === "delete") deleteTask(card)</span>
+                    <span class="c-green"> if (action === "complete") completeTask(card)</span>
+                    <span class="c-green"> if (action === "edit") editTask(card)</span>
+                    <span class="c-green">})</span>
+                    <span class="c-white"></span>
+                    <span class="c-gray">// Works for ALL tasks — even ones added AFTER the listener!</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ─── SECTION: PIPELINE ──────────────────────── -->
+        <section class="section" id="section-pipeline">
+
+            <div class="section-header">
+                <h1>Browser Rendering Pipeline</h1>
+                <p>How the browser converts HTML + CSS into pixels on screen.</p>
+            </div>
+
+            <div class="pipeline-grid">
+
+                <!-- HTML Pipeline -->
+                <div class="pipeline-flow">
+                    <h3>📄 HTML → DOM Tree</h3>
+                    <div class="flow-steps">
+                        <div class="flow-step step-html">
+                            <div class="step-name">HTML</div>
+                            <div class="step-desc">Raw .html file received from server</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step step-parse">
+                            <div class="step-name">Parsing</div>
+                            <div class="step-desc">Browser reads bytes → characters → input stream</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step step-token">
+                            <div class="step-name">Tokenization</div>
+                            <div class="step-desc">Characters split into tokens: StartTag, EndTag, Text, Comment</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step step-dom">
+                            <div class="step-name">DOM Tree</div>
+                            <div class="step-desc">Tokens → Node objects → parent-child tree structure</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Pipeline -->
+                <div class="pipeline-flow">
+                    <h3>🎨 CSS → CSSOM Tree</h3>
+                    <div class="flow-steps">
+                        <div class="flow-step step-css">
+                            <div class="step-name">CSS</div>
+                            <div class="step-desc">Raw .css file or &lt;style&gt; block received</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step step-parse">
+                            <div class="step-name">Parsing</div>
+                            <div class="step-desc">CSS bytes → characters, applying cascade rules</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step step-token">
+                            <div class="step-name">Tokenization</div>
+                            <div class="step-desc">Selectors, properties, values tokenized</div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step step-cssom">
+                            <div class="step-name">CSSOM Tree</div>
+                            <div class="step-desc">Computed styles for each node — mirrors DOM structure</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Merge → Render Tree -->
+            <div class="pipeline-flow" style="margin-bottom:20px;">
+                <h3>🖼 Combining → Render Tree → Pixels</h3>
+                <div class="flow-steps">
+                    <div class="merge-row">
+                        <div class="merge-box step-dom" style="padding:12px 20px">
+                            <div
+                                style="font-size:.7rem;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.06em">
+                                DOM Tree</div>
+                            <div style="font-size:.82rem;margin-top:2px">Nodes &amp; structure</div>
+                        </div>
+                        <div class="merge-plus">+</div>
+                        <div class="merge-box step-cssom" style="padding:12px 20px">
+                            <div
+                                style="font-size:.7rem;color:var(--purple);font-weight:700;text-transform:uppercase;letter-spacing:.06em">
+                                CSSOM Tree</div>
+                            <div style="font-size:.82rem;margin-top:2px">Styles &amp; rules</div>
+                        </div>
+                        <div class="merge-arrow">→</div>
+                        <div class="merge-box step-render" style="padding:12px 20px;flex:1">
+                            <div
+                                style="font-size:.7rem;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.06em">
+                                Render Tree</div>
+                            <div style="font-size:.82rem;margin-top:2px">Only visible nodes with computed styles</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step step-parse" style="width:100%">
+                        <div class="step-name">Layout (Reflow)</div>
+                        <div class="step-desc">Browser calculates exact position &amp; size of every box (Box Model)
+                        </div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step step-dom" style="width:100%">
+                        <div class="step-name">Paint</div>
+                        <div class="step-desc">Browser fills in pixels: colors, borders, shadows, text</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step step-render" style="width:100%">
+                        <div class="step-name">Compositing</div>
+                        <div class="step-desc">Layers assembled and sent to GPU → displayed on screen ✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept cards -->
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">📝</div>
+                    <div class="concept-title">Parsing</div>
+                    <div class="concept-desc">The browser reads the raw byte stream and changes it into a useful
+                        structure. The HTML parser is error-resistant and manages incorrect markup.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🔤</div>
+                    <div class="concept-title">Tokenization</div>
+                    <div class="concept-desc">The input stream is divided into discrete tokens: StartTag(&lt;div&gt;)
+                        EndTag(&lt;/div&gt;) Character Comment DOCTYPE Each token has attributes and name.
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🌳</div>
+                    <div class="concept-title">DOM Tree</div>
+                    <div class="concept-desc">These tokens get represented as Node objects which are arranged in the
+                        form of a tree. Each HTML element becomes a node, having parent-child and sibling relationship.
+                    </div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🎨</div>
+                    <div class="concept-title">CSSOM Tree</div>
+                    <div class="concept-desc">This CSS gets parsed to become another tree similar to the previous one,
+                        having information about styles mapped on to all DOM nodes.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🖼</div>
+                    <div class="concept-title">Render Tree</div>
+                    <div class="concept-desc">DOM + CSSOM together. Only visible nodes included - display:none nodes are
+                        excluded. Each node has its geometry and style.</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">⚡</div>
+                    <div class="concept-title">Reflow vs Repaint</div>
+                    <div class="concept-desc">Layout (width, height) changes cause Reflow - costly. Changing
+                        color/opacity will trigger the repaint only. Use <code
+                            style="font-family:var(--mono);font-size:.75rem">transform</code> to animate.</div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- EXTERNAL JS FILE -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
