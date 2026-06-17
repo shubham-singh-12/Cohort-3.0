@@ -355,37 +355,42 @@
 
             <!-- Code explanation -->
             <div class="code-block">
-                <span class="c-gray">// ── EVENT BUBBLING (default) ───────────────────────────────</span>
-                <span class="c-gray">// Listener added with capture: false (default)</span>
-                <span class="c-white">grandparent.addEventListener(<span class="c-green">"click"</span>, () =>
-                    console.log(<span class="c-amber">"Grandparent"</span>))<span class="c-gray"> // fires
-                        3rd</span></span>
-                <span class="c-white">parent.addEventListener(<span class="c-green">"click"</span>, () =>
-                    console.log(<span class="c-amber">"Parent"</span>)) <span class="c-gray"> // fires 2nd</span></span>
-                <span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, () =>
-                    console.log(<span class="c-amber">"Child"</span>)) <span class="c-gray"> // fires 1st</span></span>
-                <span class="c-white"></span>
-                <span class="c-gray">// Output order → Child → Parent → Grandparent</span>
-                <span class="c-white"></span>
-                <span class="c-gray">// ── EVENT CAPTURING ────────────────────────────────────────</span>
-                <span class="c-gray">// Listener added with { capture: true }</span>
-                <span class="c-white">grandparent.addEventListener(<span class="c-green">"click"</span>, () =>
-                    console.log(<span class="c-amber">"Grandparent"</span>), <span class="c-cyan">{ capture: true
-                        }</span>)<span class="c-gray"> // fires 1st</span></span>
-                <span class="c-white">parent.addEventListener(<span class="c-green">"click"</span>, () =>
-                    console.log(<span class="c-amber">"Parent"</span>), <span class="c-cyan">{ capture: true
-                        }</span>)<span class="c-gray"> // fires 2nd</span></span>
-                <span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, () =>
-                    console.log(<span class="c-amber">"Child"</span>), <span class="c-cyan">{ capture: true
-                        }</span>)<span class="c-gray"> // fires 3rd</span></span>
-                <span class="c-white"></span>
-                <span class="c-gray">// Output order → Grandparent → Parent → Child</span>
-                <span class="c-white"></span>
-                <span class="c-gray">// ── STOP PROPAGATION ───────────────────────────────────────</span>
-                <span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, (e) => {</span>
-                <span class="c-white"> e.stopPropagation() <span class="c-gray">// prevents event from reaching
-                        parent/grandparent</span></span>
-                <span class="c-white">})</span>
+                <div><span class="c-gray">// ── EVENT BUBBLING (default) ──────────────────────</span></div>
+                <div><span class="c-gray">// Listener added with capture: false (default)</span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-white">grandparent.addEventListener(<span class="c-green">"click"</span>, () =>
+                        console.log(<span class="c-amber">"Grandparent"</span>))<span class="c-gray"> // fires
+                            3rd</span></span></div>
+                <div><span class="c-white">parent.addEventListener(<span class="c-green">"click"</span>, () =>
+                        console.log(<span class="c-amber">"Parent"</span>)) <span class="c-gray"> // fires
+                            2nd</span></span></div>
+                <div><span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, () =>
+                        console.log(<span class="c-amber">"Child"</span>)) <span class="c-gray"> // fires
+                            1st</span></span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// Output order → Child → Parent → Grandparent</span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// ── EVENT CAPTURING ───────────────────────────────</span></div>
+                <div><span class="c-gray">// Listener added with { capture: true }</span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-white">grandparent.addEventListener(<span class="c-green">"click"</span>, () =>
+                        console.log(<span class="c-amber">"Grandparent"</span>), <span class="c-cyan">{ capture: true
+                            }</span>)<span class="c-gray"> // fires 1st</span></span></div>
+                <div><span class="c-white">parent.addEventListener(<span class="c-green">"click"</span>, () =>
+                        console.log(<span class="c-amber">"Parent"</span>), <span class="c-cyan">{ capture: true
+                            }</span>)<span class="c-gray"> // fires 2nd</span></span></div>
+                <div><span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, () =>
+                        console.log(<span class="c-amber">"Child"</span>), <span class="c-cyan">{ capture: true
+                            }</span>)<span class="c-gray"> // fires 3rd</span></span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// Output order → Grandparent → Parent → Child</span></div>
+                <div>&nbsp;</div>
+                <div><span class="c-gray">// ── STOP PROPAGATION ──────────────────────────────</span></div>
+                <div><span class="c-white">child.addEventListener(<span class="c-green">"click"</span>, (e) => {</span>
+                </div>
+                <div><span class="c-white">&nbsp;&nbsp;e.stopPropagation() <span class="c-gray">// prevents event
+                            reaching parent/grandparent</span></span></div>
+                <div><span class="c-white">})</span></div>
             </div>
 
             <div class="section-divider"></div>
@@ -405,27 +410,38 @@
                     <code style="font-family:var(--mono);color:var(--accent)">e.target.dataset.action</code>.
                 </p>
                 <div class="code-block">
-                    <span class="c-gray">// ── WITHOUT delegation (bad — N×3 listeners) ───────────────</span>
-                    <span class="c-red">tasks.forEach(task => {</span>
-                    <span class="c-red"> task.querySelector(".edit").addEventListener("click", handleEdit)</span>
-                    <span class="c-red"> task.querySelector(".complete").addEventListener("click",
-                        handleComplete)</span>
-                    <span class="c-red"> task.querySelector(".delete").addEventListener("click", handleDelete)</span>
-                    <span class="c-red">})</span>
-                    <span class="c-white"></span>
-                    <span class="c-gray">// ── WITH delegation (good — 1 listener total) ──────────────</span>
-                    <span class="c-green">document.getElementById("task-container").addEventListener("click", (e) =>
-                        {</span>
-                    <span class="c-green"> const action = e.target.closest("[data-action]")?.dataset.action</span>
-                    <span class="c-green"> const card = e.target.closest(".task-card")</span>
-                    <span class="c-green"> if (!card) return</span>
-                    <span class="c-white"></span>
-                    <span class="c-green"> if (action === "delete") deleteTask(card)</span>
-                    <span class="c-green"> if (action === "complete") completeTask(card)</span>
-                    <span class="c-green"> if (action === "edit") editTask(card)</span>
-                    <span class="c-green">})</span>
-                    <span class="c-white"></span>
-                    <span class="c-gray">// Works for ALL tasks — even ones added AFTER the listener!</span>
+                    <div><span class="c-gray">// ── WITHOUT delegation (bad — N×3 listeners) ─────</span></div>
+                    <div><span class="c-red">tasks.forEach(task => {</span></div>
+                    <div><span class="c-red">&nbsp;&nbsp;task.querySelector(<span
+                                class="c-green">".edit"</span>).addEventListener(<span class="c-green">"click"</span>,
+                            handleEdit)</span></div>
+                    <div><span class="c-red">&nbsp;&nbsp;task.querySelector(<span
+                                class="c-green">".complete"</span>).addEventListener(<span
+                                class="c-green">"click"</span>, handleComplete)</span></div>
+                    <div><span class="c-red">&nbsp;&nbsp;task.querySelector(<span
+                                class="c-green">".delete"</span>).addEventListener(<span class="c-green">"click"</span>,
+                            handleDelete)</span></div>
+                    <div><span class="c-red">})</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-gray">// ── WITH delegation (good — 1 listener total) ─────</span></div>
+                    <div><span class="c-green">document.getElementById(<span
+                                class="c-green">"task-container"</span>).addEventListener(<span
+                                class="c-green">"click"</span>, (e) => {</span></div>
+                    <div><span class="c-green">&nbsp;&nbsp;const action = e.target.closest(<span
+                                class="c-green">"[data-action]"</span>)?.dataset.action</span></div>
+                    <div><span class="c-green">&nbsp;&nbsp;const card = e.target.closest(<span
+                                class="c-green">".task-card"</span>)</span></div>
+                    <div><span class="c-green">&nbsp;&nbsp;if (!card) return</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-green">&nbsp;&nbsp;if (action === <span class="c-green">"delete"</span>)
+                            deleteTask(card)</span></div>
+                    <div><span class="c-green">&nbsp;&nbsp;if (action === <span class="c-green">"complete"</span>)
+                            completeTask(card)</span></div>
+                    <div><span class="c-green">&nbsp;&nbsp;if (action === <span class="c-green">"edit"</span>)
+                            editTask(card)</span></div>
+                    <div><span class="c-green">})</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="c-gray">// Works for ALL tasks — even ones added AFTER the listener!</span></div>
                 </div>
             </div>
 
