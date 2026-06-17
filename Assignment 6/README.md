@@ -4,12 +4,6 @@ An **Interactive Task Manager** built using pure **HTML, CSS, and Vanilla JavaSc
 
 ---
 
-## 🔗 Live Demo
-
-> Deploy link here (Netlify / Vercel / GitHub Pages)
-
----
-
 ## 📁 Project Structure
 
 ```
